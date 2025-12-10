@@ -12,10 +12,10 @@ export default function WeatherCard({ data, city }) {
   const iconUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`;
 
   return (
-    <div className="flex flex-col items-center text-center bg-blue-50 rounded-2xl p-6 shadow-md">
-      <h2 className="text-xl font-semibold capitalize">{city}</h2>
+    <div className="flex flex-col items-center text-center rounded-2xl p-6 shadow-md" style={{ backgroundColor: "#124559" }}>
+      <h2 className="text-xl font-semibold capitalize" style={{ color: "#EFF6E0" }}>{city}</h2>
 
-      <div className="w-24 h-24 my-2 flex items-center justify-center bg-white rounded-lg">
+      <div className="w-24 h-24 my-2 flex items-center justify-center rounded-lg" style={{ backgroundColor: "#AEC3B0" }}>
         {!iconError ? (
           <img
             src={iconUrl}
@@ -28,11 +28,11 @@ export default function WeatherCard({ data, city }) {
         )}
       </div>
 
-      <p className="text-5xl font-bold mt-2">{temperature}°C</p>
+      <p className="text-5xl font-bold mt-2" style={{ color: "#EFF6E0" }}>{temperature}°C</p>
 
-      <p className="text-lg capitalize text-slate-600">{condition}</p>
+      <p className="text-lg capitalize" style={{ color: "#AEC3B0" }}>{condition}</p>
 
-      <div className="mt-4 text-sm text-slate-700">
+      <div className="mt-4 text-sm" style={{ color: "#EFF6E0" }}>
         <p>Humidity: {humidity}%</p>
       </div>
     </div>
