@@ -2,51 +2,50 @@ import React, { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import WeatherCard from "../components/WeatherCard";
 import ErrorMessage from "../components/ErrorMessage";
-
-/*
-  Starter page:
-  - accepts a city string
-  - holds states for future use (weather, loading, error)
-  - does NOT call any API yet
-*/
+import { fetchWeather } from "../services/weatherApi";
 
 export default function WeatherPage() {
   const [city, setCity] = useState("");
-  const [weather, setWeather] = useState(null); // will hold API result later
+  const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleSearch = (searchCity) => {
-    // For now we just set city and clear errors; no API call yet.
+  async function handleSearch(searchCity) {
     setCity(searchCity);
     setWeather(null);
     setError(null);
-    setLoading(false);
-    // placeholder behavior: show a demo message in WeatherCard
-    // later we'll replace this with an actual fetch and setWeather(...)
-  };
+    setLoading(true);
+
+    try {
+      const data = await fetchWeather(searchCity);
+      setWeather(data);
+    } catch (err) {
+      setError(err.message || "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <div className="bg-white shadow-lg rounded-2xl p-6">
-      <h1 className="text-2xl font-semibold mb-4">Weather Checker (Starter)</h1>
+      <h1 className="text-2xl font-semibold mb-4">Weather Checker</h1>
 
       <SearchBar onSearch={handleSearch} initialValue={city} />
 
       <div className="mt-6">
         {loading && <p>Loading…</p>}
         {error && <ErrorMessage message={error} />}
-        {!loading && !error && city && (
+
+        {!loading && !error && weather && (
           <WeatherCard
             city={city}
-            // placeholder data until we implement actual API
             data={weather}
-            placeholder
           />
         )}
 
-        {!city && (
+        {!weather && !loading && !error && (
           <p className="text-sm text-slate-500 mt-4">
-            Enter a city name above and click Search. (No API call yet.)
+            Enter a city name above.
           </p>
         )}
       </div>
