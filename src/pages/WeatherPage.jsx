@@ -38,8 +38,26 @@ export default function WeatherPage() {
 
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <div className="shadow-lg rounded-2xl p-8 w-full max-w-md" style={{ backgroundColor: "#EFF6E0" }}>
-        <h1 className="text-3xl font-semibold mb-6 text-center" style={{ color: "#01161E" }}>Weather Checker</h1>
+      <div 
+        className="rounded-3xl p-8 w-full max-w-md"
+        style={{ 
+          backgroundColor: "rgba(239, 246, 224, 0.95)",
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
+          boxShadow: "0 8px 32px rgba(1, 22, 30, 0.2), 0 0 0 1px rgba(174, 195, 176, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5)",
+          border: "1px solid rgba(174, 195, 176, 0.2)"
+        }}
+      >
+        <h1 
+          className="text-4xl font-extrabold mb-6 text-center"
+          style={{ 
+            color: "#01161E",
+            letterSpacing: "0.02em",
+            textShadow: "0 2px 8px rgba(1, 22, 30, 0.15)"
+          }}
+        >
+          Weather Checker
+        </h1>
 
         {!weather && (
           <SearchBar onSearch={handleSearch} />
@@ -96,8 +114,15 @@ export default function WeatherPage() {
           )}
 
           {!weather && !loading && !error && (
-            <p className="text-sm text-slate-500 mt-6 text-center">
-              Enter a city name above.
+            <p 
+              className="text-sm mt-6 text-center font-light"
+              style={{ 
+                color: "#124559",
+                letterSpacing: "0.05em",
+                opacity: 0.85
+              }}
+            >
+              Enter a city name to get started
             </p>
           )}
         </div>
