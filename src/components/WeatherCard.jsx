@@ -1,41 +1,29 @@
 import React from "react";
 
-/*
-  Props:
-  - city: string
-  - data: object | null  (will be populated when we add API call)
-  - placeholder: bool (true in starter)
-*/
-
-export default function WeatherCard({ city, data, placeholder = false }) {
-  if (placeholder) {
-    return (
-      <div className="mt-4 p-4 border rounded-lg bg-slate-50">
-        <h2 className="text-xl font-medium">{city}</h2>
-        <p className="text-sm text-slate-600 mt-2">
-          This is a placeholder weather card. We'll fetch and show real weather
-          data in the next steps.
-        </p>
-      </div>
-    );
-  }
-
+export default function WeatherCard({ data, city }) {
   if (!data) return null;
 
-  // Example shape when API added later:
-  // data = { temp: 28, condition: "Clear", humidity: 65, icon: "01d" }
+  const temperature = data.temp;
+  const humidity = data.humidity;
+  const condition = data.description;
+  const icon = data.icon;
 
   return (
-    <div className="mt-4 p-4 border rounded-lg bg-white">
-      <div className="flex items-center gap-4">
-        <div>
-          <h2 className="text-xl font-medium">{city}</h2>
-          <p className="text-sm text-slate-600">{data.condition}</p>
-        </div>
-        <div className="ml-auto text-right">
-          <div className="text-3xl font-bold">{data.temp}°C</div>
-          <div className="text-sm text-slate-500">Humidity: {data.humidity}%</div>
-        </div>
+    <div className="flex flex-col items-center text-center bg-blue-50 rounded-2xl p-6 shadow-md">
+      <h2 className="text-xl font-semibold capitalize">{city}</h2>
+
+      <img
+        src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
+        alt={condition}
+        className="w-24 h-24"
+      />
+
+      <p className="text-5xl font-bold mt-2">{temperature}°C</p>
+
+      <p className="text-lg capitalize text-slate-600">{condition}</p>
+
+      <div className="mt-4 text-sm text-slate-700">
+        <p>Humidity: {humidity}%</p>
       </div>
     </div>
   );
