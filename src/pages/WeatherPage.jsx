@@ -30,17 +30,31 @@ export default function WeatherPage() {
     <div className="bg-white shadow-lg rounded-2xl p-6">
       <h1 className="text-2xl font-semibold mb-4">Weather Checker</h1>
 
-      <SearchBar onSearch={handleSearch} initialValue={city} />
+      {!weather && (
+        <SearchBar onSearch={handleSearch} />
+      )}
 
       <div className="mt-6">
         {loading && <p>Loading…</p>}
         {error && <ErrorMessage message={error} />}
 
         {!loading && !error && weather && (
-          <WeatherCard
-            city={city}
-            data={weather}
-          />
+          <>
+            <WeatherCard
+              city={city}
+              data={weather}
+            />
+            <button
+              onClick={() => {
+                setWeather(null);
+                setCity("");
+                setError(null);
+              }}
+              className="mt-4 px-4 py-2 bg-slate-800 text-white rounded-lg hover:opacity-95 w-full"
+            >
+              Search Another City
+            </button>
+          </>
         )}
 
         {!weather && !loading && !error && (
