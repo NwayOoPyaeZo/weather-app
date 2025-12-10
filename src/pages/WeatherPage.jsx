@@ -27,41 +27,43 @@ export default function WeatherPage() {
   }
 
   return (
-    <div className="bg-white shadow-lg rounded-2xl p-6">
-      <h1 className="text-2xl font-semibold mb-4">Weather Checker</h1>
+    <div className="flex justify-center items-center min-h-screen">
+      <div className="shadow-lg rounded-2xl p-8 w-full max-w-md" style={{ backgroundColor: "#EFF6E0" }}>
+        <h1 className="text-3xl font-semibold mb-6 text-center" style={{ color: "#01161E" }}>Weather Checker</h1>
 
-      {!weather && (
-        <SearchBar onSearch={handleSearch} />
-      )}
-
-      <div className="mt-6">
-        {loading && <p>Loading…</p>}
-        {error && <ErrorMessage message={error} />}
-
-        {!loading && !error && weather && (
-          <>
-            <WeatherCard
-              city={city}
-              data={weather}
-            />
-            <button
-              onClick={() => {
-                setWeather(null);
-                setCity("");
-                setError(null);
-              }}
-              className="mt-4 px-4 py-2 bg-slate-800 text-white rounded-lg hover:opacity-95 w-full"
-            >
-              Search Another City
-            </button>
-          </>
+        {!weather && (
+          <SearchBar onSearch={handleSearch} />
         )}
 
-        {!weather && !loading && !error && (
-          <p className="text-sm text-slate-500 mt-4">
-            Enter a city name above.
-          </p>
-        )}
+        <div className="mt-8">
+          {loading && <p className="text-center">Loading…</p>}
+          {error && <ErrorMessage message={error} />}
+
+          {!loading && !error && weather && (
+            <>
+              <WeatherCard
+                city={city}
+                data={weather}
+              />
+              <button
+                onClick={() => {
+                  setWeather(null);
+                  setCity("");
+                  setError(null);
+                }}
+                className="mt-6 px-6 py-3 bg-slate-800 text-white rounded-lg hover:opacity-95 w-full font-medium"
+              >
+                Search Another City
+              </button>
+            </>
+          )}
+
+          {!weather && !loading && !error && (
+            <p className="text-sm text-slate-500 mt-6 text-center">
+              Enter a city name above.
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );
