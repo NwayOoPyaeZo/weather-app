@@ -34,10 +34,10 @@ export default function SearchBar({ onSearch }) {
 
   return (
     <div className="relative w-full">
-      <div className="flex gap-2">
+      <div className="flex gap-1.5 sm:gap-2 w-full overflow-hidden">
         <input
           type="text"
-          className="flex-1 p-3 pl-4 rounded-xl border-2 focus:outline-none transition-all duration-200"
+          className="flex-1 min-w-0 p-2.5 pl-3 sm:p-3 sm:pl-4 rounded-xl border-2 focus:outline-none transition-all duration-200 text-sm sm:text-base"
           placeholder="Search for a city…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -45,8 +45,7 @@ export default function SearchBar({ onSearch }) {
           style={{
             backgroundColor: "#EFF6E0",
             borderColor: "#124559",
-            color: "#01161E",
-            fontSize: "15px"
+            color: "#01161E"
           }}
           onFocus={(e) => {
             e.target.style.borderColor = "#598392";
@@ -59,7 +58,7 @@ export default function SearchBar({ onSearch }) {
         />
         <button
           onClick={handleSearchClick}
-          className="px-5 py-3 rounded-xl font-bold transition-all duration-200"
+          className="min-w-0 flex-shrink-0 px-2.5 py-2 sm:px-5 sm:py-3 rounded-xl font-bold transition-all duration-200"
           style={{
             background: "linear-gradient(135deg, #01161E, #124559)",
             color: "#EFF6E0",
@@ -74,7 +73,7 @@ export default function SearchBar({ onSearch }) {
             e.currentTarget.style.boxShadow = "0 4px 15px rgba(1, 22, 30, 0.3)";
           }}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4 sm:w-5 sm:h-5">
             <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
           </svg>
         </button>

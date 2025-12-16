@@ -49,7 +49,7 @@ export default function WeatherPage() {
         }}
       >
         <h1 
-          className="text-4xl font-extrabold mb-6 text-center"
+          className="text-3xl sm:text-4xl font-extrabold mb-6 text-center break-words max-w-full"
           style={{ 
             color: "#01161E",
             letterSpacing: "0.02em",
